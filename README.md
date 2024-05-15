@@ -99,6 +99,11 @@ Make sure you have `python` or `python3` and `pip` or `pip3` installed on your m
   ]
 }
 ```
+5. Run the UnitTests:
+   ```
+   python3 test_app.py
+   ```
+
 
 ## Project Structure
 
