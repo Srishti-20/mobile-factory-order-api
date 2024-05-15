@@ -48,7 +48,7 @@ Make sure you have `python` or `python3` and `pip` or `pip3` installed on your m
 ### Installation and Running the Application
 
 1. Download both the python code files: `app.py` and `test_app.py` from this repository.
-2. Open both the files in an open-source text editor, example: `VS Code`.
+2. Open both the files in an open-source text editor, for example: `VS Code`.
 3. Install the required packages:
    ```sh
    pip3 install flask
@@ -61,7 +61,7 @@ Make sure you have `python` or `python3` and `pip` or `pip3` installed on your m
 ### API Reference
 
 - Open Terminal or Command Prompt in your device.
-- Navigate to the Project directory were you saved it.
+- Navigate to the Project directory where you saved it.
 
 ### command to do the POST request:-
 
@@ -69,7 +69,7 @@ Make sure you have `python` or `python3` and `pip` or `pip3` installed on your m
   curl -X POST -H "Content-Type: application/json" -d '{"components": ["I","A","D","F","K"]}' http://127.0.0.1:5000/orders
 ```
 
-#### Explanation of each components of this curl command line:-
+#### Explanation of each component of this curl command line:-
 
 - **curl** It is the command-line tool used to send the request.
 - **-X POST** specifies that the request is a POST request.
@@ -84,7 +84,7 @@ Make sure you have `python` or `python3` and `pip` or `pip3` installed on your m
 - /orders - the endpoint on the server that will handle the request.
 ```
 
-### The Response from the above POST request
+### The Response to the above POST request
 
 ```json
 {
@@ -119,10 +119,10 @@ Make sure you have `python` or `python3` and `pip` or `pip3` installed on your m
    ```
 
 - importing time to get the current time of ordering, so that we can use it while generating our order ID.
-- random is used to put random 4 digit number in our order ID, for it's uniquness.
-- importing flask modules to run the application, make the api requests work and jsonify the output.
+- random is used to put a random 4-digit number in our order ID, for its uniqueness.
+- importing flask modules to run the application, make the API requests work and jsonify the output.
 
-2. Creating the Flask application, defining the component data and required catagories:
+2. Creating the Flask application, defining the component data and required categories:
 
    ```
    app = Flask(__name__)
@@ -153,7 +153,7 @@ Make sure you have `python` or `python3` and `pip` or `pip3` installed on your m
    @app.route('/orders', methods=['POST'])
    ```
 
-- setting the endpoit to route the application by putting that it in the URL.
+- setting the endpoit to route the application by putting that in the URL.
 
 4. Defining function to handle orders:
    ```
@@ -163,8 +163,8 @@ Make sure you have `python` or `python3` and `pip` or `pip3` installed on your m
    ```
 
 -
-- get JSON data from request and storing it in the variable request_data.
-- .get function helps to find the key and give the values of it.If the key is not found then it puts the default value if provided like in this we gave an empty list as the default value, Storing the Value in the varibale names `components`.
+- get JSON data from the request and store it in the variable request_data.
+- .get function helps to find the key and give the values of it. If the key is not found then it puts the default value if provided like in this we gave an empty list as the default value, Storing the Value in the variable names `components`.
 
 5. Checking the validity of the input:
 
@@ -178,11 +178,11 @@ Make sure you have `python` or `python3` and `pip` or `pip3` installed on your m
    components.sort()
    ```
 
-- first condition is to check if components is a list datatype or not.
-- second condition is to check if `components` has values in it or is it an empty list, and to verify it's datatype too.
-- then we sort the `components`, so as to process the output in the right order of catagories for the required data.
+- the first condition is to check if the components are a list datatype or not.
+- The second condition is to check if `components` has values in it or if is it an empty list, and to verify its datatype too.
+- then we sort the `components`, so as to process the output in the right order of categories for the required data.
 
-6. Data processing and formating
+6. Data processing and formatting
 
    ```
    order_parts = []
@@ -203,14 +203,14 @@ Make sure you have `python` or `python3` and `pip` or `pip3` installed on your m
            return jsonify({'error': 'Invalid component code: {}'.format(component_code)}), 400
    ```
 
-- took a list() to store the parts ordered, a float() variable to store the calculated price of the items, a set() to store the catagory of the input data processed so that not more than 1 item from the same catagory can be stored in it, hence processing the valid input.
+- took a list() to store the parts ordered, a float() variable to store the calculated price of the items, and a set() to store the category of the input data processed so that not more than 1 item from the same category can be stored in it, hence processing the valid input.
 - function to check each value in the input data:
-  component_code takes each input at each iteration and check.
+  component_code takes each input at each iteration and checks.
 
 component_info have the value searched by the .get() from the
 component_data.
 
-if component_info is not None, variable `catagory` will store the value of the key called catagory taken from the component_info. Then it is checked that if the catagory is already present in the selected_categories set() or not, if yes then shows an error, if not then add that catagory to the set().
+if component_info is not None, variable `category` will store the value of the key called category taken from the component_info. Then it is checked that if the category is already present in the selected_categories set() or not, if yes then shows an error, if not then add that category to the set().
 
 if component_info is None then throws an error message.
 
@@ -220,15 +220,15 @@ if component_info is None then throws an error message.
        return jsonify({'error': 'Invalid order. Please include one part from each category: Screen, Camera, Port, OS, Body.'}), 400
    ```
 
-- if both the sets, selected_categories and required_categories and equale then condition is passed, otherwise error.
+- if both the sets, selected_categories and required_categories and equal then the condition is passed, otherwise an error.
 
 8. Generate and return the order_details/output
 
    ```
    def generate_order_id():
        timestamp = int(time.time())                            # Current time in seconds since epoch
-       random_number = random.randint(1000, 9999)              # Random 4-digit number
        alphabets = ''.join(components)                         # Concatenate component codes
+       random_number = random.randint(1000, 9999)              # Random 4-digit number
        order_id = f"{timestamp}{alphabets}{random_number}"     # Generate order ID
        return order_id
 
@@ -241,8 +241,8 @@ if component_info is None then throws an error message.
    return jsonify(order_response), 201
    ```
 
-- generating order ID using current time of out system, alphabets given in the input data and random number generated to make the order completely unique.
-- made a dictionary to formate the order_respone so that it can in json format and then jsonified while returning too.
+- generating order ID using the current time of our system, alphabets given in the input data and random number generated to make the order unique.
+- made a dictionary to format the order_respone so that it can be in JSON format and then JSONified while returning too.
 
 9. Run the application
    ```
@@ -250,7 +250,7 @@ if component_info is None then throws an error message.
    app.run(debug=True)
    ```
 
-- main function is called here, that means the code starts running from this line of code.
+- The main function is called here, which means the code starts running from this line of code.
 - `app.run()' is the code to start the Flask development server.
 - (debug=True) is passed as an argument to enable functionalities like automatic reloading, error debugging information, etc.
 
@@ -325,7 +325,7 @@ This code file defines a set of unit tests for a Flask application that processe
        print("\nInvalid Order (Non-List Components) Response:", data)
    ```
 
-- the code for each test cases is checking each type of error and it's working, the code is pretty much self explanatory.
+- the code for each test case is checking each type of error and it's working, the code is pretty much self-explanatory.
 - uses the test_client.post method to send a POST request to the /orders endpoint of the application. The request body contains JSON data with a key named "components" that holds a list of component codes.
 - the content_type argument is set to "application/json" to indicate the format of the request body.
 - response Assertions:
@@ -337,4 +337,4 @@ It uses assertions from the unittest module to verify the presence of specific k
 
 Optionally, it may print the response data for debugging purposes.
 
-## Hence here we come to an end of out project.
+## Hence, here we come to the end of the project.
