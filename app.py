@@ -83,12 +83,5 @@ def create_order():
 
     return jsonify(order_response), 201
 
-    '''order_response = {
-        'order_id': generate_order_id(),                       
-        'total': total_price,                                  
-        'parts': order_parts                                   
-    }
-    return jsonify(order_response), 201'''
-
 if __name__ == '__main__':
     app.run(debug=True)                                         # Run the Flask app
