@@ -92,6 +92,10 @@ Make sure you have `python` or `python3` and `pip` or `pip3` installed on your m
   ]
 }
 ```
+### Run UnitTests
+    ```sh
+    python3 test_app.py
+    ```
 
 
 
