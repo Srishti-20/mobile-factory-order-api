@@ -81,9 +81,9 @@ Make sure you have `python` or `python3` and `pip` or `pip3` installed on your m
 ### The Response to the above POST request
 ```json
 {
-  "1order_id": "1715751735ADFIK2301",
-  "2total": 142.3,
-  "3parts": [
+  "order_id": "1715751735ADFIK2301",
+  "total_price": 142.3,
+  "ordered_parts": [
     "LED Screen",
     "Wide-Angle Camera",
     "USB-C Port",
@@ -262,12 +262,12 @@ This code file defines a set of unit tests for a Flask application that processe
     def test_valid_order(self):
         # Post request with valid JSON data
         response = self.app.post('/orders', data=json.dumps({"components": ["A", "D", "F", "I", "K"]}), content_type='application/json')
-        self.assertEqual(response.status_code, 201)  # 201 Created
-        data = json.loads(response.data)             # Convert response to JSON
-        self.assertIn('1order_id', data)             # Check if '1order_id' key exists
-        self.assertIn('2total', data)                # Check if '2total' key exists
-        self.assertIn('3parts', data)                # Check if '3parts' key exists
-        print("\nValid Order Response:", data)       # Print response for debugging
+        self.assertEqual(response.status_code, 201)      # 201 Created
+        data = json.loads(response.data)                 # Convert response to JSON
+        self.assertIn('order_id', data)                  # Check if '1order_id' key exists
+        self.assertIn('total_price', data)               # Check if '2total' key exists
+        self.assertIn('ordered_parts', data)             # Check if '3parts' key exists
+        print("\nValid Order Response:", data)           # Print response for debugging
     
     # Test invalid order with duplicate category
     def test_invalid_order_duplicate_category(self):
